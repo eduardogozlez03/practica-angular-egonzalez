@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';  // Asegúrate de importar FormsModule
+import { provideHttpClient } from '@angular/common/http';  // Importa esta función
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,22 +11,27 @@ import { AcercaDeComponent } from './components/acerca-de/acerca-de.component';
 import { PaginaNoEncontradaComponent } from './components/pagina-no-encontrada/pagina-no-encontrada.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { MayusculasPipe } from './pipes/mayusculas.pipe';  // Importa la pipe
 
 @NgModule({
   declarations: [
     AppComponent,
     BienvenidaComponent,
-    BusquedaComponent,
+    BusquedaComponent,    // No olvides declarar el componente BusquedaComponent aquí
     AcercaDeComponent,
     PaginaNoEncontradaComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    MayusculasPipe  // Declaramos la pipe en el array de `declarations`
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    provideHttpClient()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

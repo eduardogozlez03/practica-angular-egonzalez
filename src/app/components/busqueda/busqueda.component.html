@@ -1,1 +1,46 @@
-<p>busqueda works!</p>
+<div class="container mt-4">
+    <h2>Búsqueda de Películas</h2>
+  
+    <input type="text" [(ngModel)]="query" placeholder="Buscar película..." class="form-control mb-3">
+    
+    <!-- select para filtrar por genero -->
+    <select [(ngModel)]="genre" class="form-control mb-3">
+      <option value="">Seleccionar género</option>
+      <option value="28">Acción</option>
+      <option value="35">Comedia</option>
+      <option value="18">Drama</option>
+      <option value="53">Suspenso</option>
+      <option value="80">Crimen</option>
+      <option value="27">Terror</option>
+      <option value="12">Aventura</option>
+      <option value="10749">Romance</option>
+      <option value="14">Fantasía</option>
+      <option value="878">Ciencia ficción</option>
+      <option value="37">Western</option>
+    </select>
+  
+    <button (click)="buscar()" class="btn btn-primary">Buscar</button>
+  
+    <div *ngIf="buscando" class="mt-3">🔍 Buscando...</div>
+  
+    <div *ngIf="peliculas.length === 0 && !buscando" class="mt-3">
+      <p>No se encontraron películas para "{{ query }}"</p>
+    </div>
+  
+    <div class="row mt-4">
+      <div *ngFor="let pelicula of peliculas" class="col-md-4">
+        <div class="card mb-3">
+          <img [src]="'https://image.tmdb.org/t/p/w500' + pelicula.poster_path" class="card-img-top" alt="{{ pelicula.title }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ pelicula.title | mayusculas }}</h5>
+            <p class="card-text">{{ pelicula.overview }}</p>
+            <p class="card-text"><small class="text-muted">⭐ {{ pelicula.vote_average }}</small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
